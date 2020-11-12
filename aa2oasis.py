@@ -182,7 +182,8 @@ def demo_writeFile(ymd='20191206'):
   delt=3600; ntEachFile = 3 #for input files 
   
   #input files
-  fDir = '/lustre/storeB/users/nicholass/get_topaz/on_ppi/201912/'
+  #fDir = '/lustre/storeB/users/nicholass/get_topaz/on_ppi/201912/'
+  fDir = './'
   #fList = sorted(glob.glob(fDir+'Dec2019*_AA_*nc')); print fList
   fList = sorted(glob.glob( fDir+'Dec2019*_AA_{0}*nc'.format(ymd) )); print fList
   
