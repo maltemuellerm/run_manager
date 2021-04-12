@@ -607,7 +607,7 @@ $ Include ice and mud parameters only if IC1/2/3/4 used :
    F F     Ice parameter 2
    F F     Ice parameter 3
    F F     Ice parameter 4
-   C F     Ice parameter 5
+   F F     Ice parameter 5
    F F     Mud parameter 1
    F F     Mud parameter 2
    F F     Mud parameter 3
@@ -631,7 +631,7 @@ $ Type 1 : Fields of mean wave parameters
 $ (1) Forcing Fields
   T
 $ DPT CUR WND AST WLV ICE IBG D50 IC1 IC5
-  T   T   T   T   F   T   F   F   T   T
+  T   T   T   T   F   T   F   F   T   F
 $ (2) Standard mean wave Parameters
   T
 $ HS  LM  T02 T0M1 T01 FP DIR SPR DP
@@ -665,9 +665,9 @@ $ (9) Numerical diagnostics
 $ DTD FC  CFX CFD CFK
   T   T   F   F   F
 $ (10) User defined (NOEXTR flags needed)
-  T
+  F
 $ LBRK ZBRK DMAX
-  T    T    T
+$  T    T    T
 $ ----------------------------------------------
 $ Type 2 : Point output
    {ymd0} {hms0}   0  {ymdf} {hmsf}
@@ -690,9 +690,9 @@ $ Type 7 : Coupling. (must be fully commented if not used with switch COU)
    {ymd0} {hms0}   300  {ymdf} {hmsf}
   N
 $ Sent fields by ww3:
-  TWI LBRK ZBRK 
+  TWI AHS FP 
 $ Received fields by ww3:
-  IC1 IC5 WND ICE
+  IC1 WND ICE
 $ --- --------------------------------------
 $ Homogeneous field data :
    'STP'
