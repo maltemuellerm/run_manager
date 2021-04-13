@@ -30,6 +30,8 @@ def setup_case_cice(ICE_RUNDIR, t0, deltat = 120.0, npt = 720, restart_fsd = '.f
   
   os.system('ln -sf /nobackup/forsk/sm_malmu/CICE/forcing/TOPAZ2CICE_{1}_1D.nc {0}/oceanForce.nc'.format(ICE_RUNDIR,ymd0) )
   os.system('ln -sf /nobackup/forsk/sm_malmu/CICE/forcing/AA2CICE_{1}_1Hr.nc {0}/atmoForce.nc'.format(ICE_RUNDIR,ymd0) )
+  #os.system('ln -sf /nobackup/forsk/sm_nicsz/for_barents/TOPAZ2CICE_{1}_1D.nc {0}/oceanForce.nc'.format(ICE_RUNDIR,ymd0) )
+  #os.system('ln -sf /nobackup/forsk/sm_nicsz/for_barents/AA2CICE_{1}_1Hr.nc {0}/atmoForce.nc'.format(ICE_RUNDIR,ymd0) )
   os.system('ln -sf /nobackup/forsk/sm_nicsz/for_barents/cice*.nc {0}'.format(ICE_RUNDIR) )
   
   tStamp = t0.strftime('%Y-%m-%d-00000'); fRestart_cice = 'restart/iced.{tStamp}.nc'.format(tStamp=tStamp)
@@ -47,11 +49,10 @@ def setup_case_oasis(ICE_RUNDIR, t0, tf):
     os.system('ln -sf /nobackup/forsk/sm_malmu/CICE/oasis_ini/restart*.nc {0}'.format(ICE_RUNDIR) ) #coupling restarts when w/lag
   #t0 = dt.datetime(2019,12,6); tf = dt.datetime(2019,12,7)
   tRun = (tf-t0).total_seconds(); tRun=int(tRun)
-  os.system('ln -sf /nobackup/forsk/sm_malmu/CICE/oasis_ini/namcouple {0}'.format(ICE_RUNDIR) )
-  #s = helper_nml.form_oasis_namcouple(tRun)
-  #with open('namcouple', 'w') as f:
-  #  f.write(s)
-  #os.system('mv namcouple {0}'.format(ICE_RUNDIR))
+  s = helper_nml.form_oasis_namcouple(tRun)
+  with open('namcouple', 'w') as f:
+    f.write(s)
+  os.system('mv namcouple {0}'.format(ICE_RUNDIR))
 #
 
 def setup_case(ICE_RUNDIR, t0, tf, deltat = 120.0, npt = 720, restart_fsd = '.true.'):
@@ -64,7 +65,7 @@ def setup_case(ICE_RUNDIR, t0, tf, deltat = 120.0, npt = 720, restart_fsd = '.tr
 
 def demo_setup_case():
   ICE_RUNDIR='/nobackup/forsk/sm_malmu/CICE6/CICE_RUNS/01_exp/'
-  t0 = dt.datetime(YYYYMMDD1); tf = dt.datetime(YYYYMMDD2)
+  t0 = dt.datetime(2019,12,6); tf = dt.datetime(2019,12,7)
   setup_case(ICE_RUNDIR, t0, tf)
 
 if __name__=='__main__':
